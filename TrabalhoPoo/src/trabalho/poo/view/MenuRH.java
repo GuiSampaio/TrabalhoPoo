@@ -1,6 +1,8 @@
 package trabalho.poo.view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -53,42 +55,50 @@ public class MenuRH extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblName = new JLabel("Nome:");
-		lblName.setBounds(119, 145, 65, 14);
+		lblName.setForeground(new Color(0,100,0));
+		lblName.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblName.setBounds(291, 142, 65, 14);
 		contentPane.add(lblName);
 		
 		JLabel lblTel = new JLabel("Tel:");
-		lblTel.setBounds(119, 198, 24, 14);
+		lblTel.setForeground(new Color(0,100,0));
+		lblTel.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblTel.setBounds(294, 198, 24, 14);
 		contentPane.add(lblTel);
 		
 		JLabel lblEnd = new JLabel("Endere\u00E7o:");
-		lblEnd.setBounds(114, 259, 58, 14);
+		lblEnd.setForeground(new Color(0,100,0));
+		lblEnd.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblEnd.setBounds(260, 259, 58, 14);
 		contentPane.add(lblEnd);
 		
 		textField = new JTextField();
-		textField.setBounds(171, 256, 86, 20);
+		textField.setBounds(328, 256, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(156, 142, 86, 20);
+		textField_1.setBounds(328, 139, 86, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		formattedTextField = new JFormattedTextField();
-		formattedTextField.setBounds(153, 195, 89, 20);
+		formattedTextField.setBounds(328, 195, 89, 20);
 		contentPane.add(formattedTextField);
 		
 		lblFuno = new JLabel("Fun\u00E7\u00E3o:");
-		lblFuno.setBounds(119, 325, 46, 14);
+		lblFuno.setForeground(new Color(0,100,0));
+		lblFuno.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblFuno.setBounds(272, 325, 46, 14);
 		contentPane.add(lblFuno);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(171, 322, 86, 20);
+		textField_2.setBounds(328, 322, 86, 20);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
 		btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setBounds(171, 403, 89, 23);
+		btnCadastrar.setBounds(325, 380, 89, 23);
 		contentPane.add(btnCadastrar);
 	}
 }

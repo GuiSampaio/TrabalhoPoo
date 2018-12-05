@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.Color;
 
 public class CadastroLog extends JFrame {
 
@@ -49,49 +51,54 @@ public class CadastroLog extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblCPF = new JLabel("CPF:");
-		lblCPF.setBounds(198, 124, 46, 14);
+		lblCPF.setForeground(new Color(0,100,0));
+		lblCPF.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCPF.setBounds(310, 124, 46, 14);
 		contentPane.add(lblCPF);
 		
 		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setBounds(198, 170, 46, 14);
+		lblSenha.setForeground(new Color(0,100,0));
+		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblSenha.setBounds(297, 170, 46, 14);
 		contentPane.add(lblSenha);
 		
-		JLabel label = new JLabel("");
-		label.setBounds(129, 247, 46, 14);
-		contentPane.add(label);
-		
 		textField = new JTextField();
-		textField.setBounds(230, 121, 86, 20);
+		textField.setBounds(335, 121, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(230, 167, 86, 20);
+		textField_1.setBounds(335, 167, 86, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblFuno = new JLabel("Fun\u00E7\u00E3o:");
-		lblFuno.setBounds(184, 230, 46, 14);
+		lblFuno.setForeground(new Color(0,100,0));
+		lblFuno.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblFuno.setBounds(236, 230, 46, 14);
 		contentPane.add(lblFuno);
 		
 		JRadioButton rdbtnGerente = new JRadioButton("Gerente");
-		rdbtnGerente.setBounds(230, 226, 65, 23);
+		rdbtnGerente.setForeground(new Color(0,100,0));
+		rdbtnGerente.setBounds(297, 226, 65, 23);
 		contentPane.add(rdbtnGerente);
 		
 		JRadioButton rdbtnRh = new JRadioButton("RH");
-		rdbtnRh.setBounds(297, 226, 46, 23);
+		rdbtnRh.setForeground(new Color(0,100,0));
+		rdbtnRh.setBounds(364, 226, 46, 23);
 		contentPane.add(rdbtnRh);
 		
 		JRadioButton rdbtnOperacional = new JRadioButton("Operacional");
-		rdbtnOperacional.setBounds(345, 226, 109, 23);
+		rdbtnOperacional.setForeground(new Color(0,100,0));
+		rdbtnOperacional.setBounds(412, 226, 109, 23);
 		contentPane.add(rdbtnOperacional);
 		
 		JButton btnRegistrar = new JButton("Registrar");
-		btnRegistrar.setBounds(183, 323, 89, 23);
+		btnRegistrar.setBounds(267, 323, 89, 23);
 		contentPane.add(btnRegistrar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(297, 323, 89, 23);
+		btnCancelar.setBounds(383, 323, 89, 23);
 		contentPane.add(btnCancelar);
 	}
 }

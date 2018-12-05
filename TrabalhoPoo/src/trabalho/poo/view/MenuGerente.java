@@ -1,6 +1,8 @@
 package trabalho.poo.view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -53,34 +55,40 @@ public class MenuGerente extends JFrame {
 		contentPane.add(btnEmitirRelatrio);
 		
 		JLabel lblCodF = new JLabel("Codigo do funcion\u00E1rio:");
-		lblCodF.setBounds(75, 192, 108, 14);
+		lblCodF.setForeground(new Color(0,100,0));
+		lblCodF.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCodF.setBounds(241, 195, 133, 14);
 		contentPane.add(lblCodF);
 		
 		JLabel lblCodE = new JLabel("Codigo da etapa:");
-		lblCodE.setBounds(99, 248, 83, 14);
+		lblCodE.setForeground(new Color(0,100,0));
+		lblCodE.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCodE.setBounds(269, 239, 111, 14);
 		contentPane.add(lblCodE);
 		
 		JLabel lblCodP = new JLabel("Condigo do projeto:");
-		lblCodP.setBounds(87, 294, 96, 14);
+		lblCodP.setForeground(new Color(0,100,0));
+		lblCodP.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCodP.setBounds(252, 277, 133, 14);
 		contentPane.add(lblCodP);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(205, 189, 86, 20);
+		textField_1.setBounds(384, 192, 86, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(205, 245, 86, 20);
+		textField_2.setBounds(384, 236, 86, 20);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(205, 291, 86, 20);
+		textField_3.setBounds(384, 274, 86, 20);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
 		JButton btnAlocar = new JButton("Alocar");
-		btnAlocar.setBounds(205, 393, 89, 23);
+		btnAlocar.setBounds(323, 347, 89, 23);
 		contentPane.add(btnAlocar);
 	}
 }
