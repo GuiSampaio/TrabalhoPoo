@@ -6,6 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
+
+import trabalho.poo.model.ConnectionFactory;
+import trabalho.poo.model.LoginRepositorio;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -17,6 +21,7 @@ import java.awt.Font;
 import java.awt.Window;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JPasswordField;
@@ -126,19 +131,20 @@ public class CadastroLog extends JFrame {
 			    
 					try {
 						String selectedOption = buttonGroup.getSelection (     ).getActionCommand ( );
-				
+						LoginRepositorio login = new LoginRepositorio();
 						switch(selectedOption) {
 						case "1":
 							JOptionPane.showMessageDialog(null, formattedTextFieldCPF.getText() + " Cadastrado como gerente");
-							//enviar os dados para o banco de login com funcao gerente ex: controller.setCadastro(formattedTextFieldCPF, passwordField, selectedOption)
+							//enviar os dados para o banco de login com funcao gerente ex: controller.setCadastro(formattedTextFieldCPF,  selectedOption)
+							login.cadastrarPessoa(ConnectionFactory.getConnection(), Integer.parseInt(selectedOption), formattedTextFieldCPF.getText());
 							break;
 						case "2":
 							JOptionPane.showMessageDialog(null, formattedTextFieldCPF.getText() + " Cadastrado como RH");
-							//enviar os dados para o banco de login com funcao gerente
+							login.cadastrarPessoa(ConnectionFactory.getConnection(), Integer.parseInt(selectedOption), formattedTextFieldCPF.getText());
 							break;
 						case "3":
 							JOptionPane.showMessageDialog(null,  formattedTextFieldCPF.getText() + " Cadastrado como Operacional");
-							//enviar os dados para o banco de login com funcao gerente
+							login.cadastrarPessoa(ConnectionFactory.getConnection(), Integer.parseInt(selectedOption), formattedTextFieldCPF.getText());
 							break;
 						}
 					}catch(Exception ex) {

@@ -1,9 +1,15 @@
+package trabalho.poo.model;
+
 import java.util.*;
+
+import trabalho.poo.controller.Projeto;
+
 import java.sql.*;
+import java.sql.Date;
 
 public class RepositorioProjeto
-{	public static int incluir (Connection conn, int cod, String cpf, Date inicio, Date fim, double valor) 
-		throws Excecao
+{	public static int incluir (Connection conn, int cod, String cpf, String inicio, String fim, double valor) 
+		throws SQLException
 	{	
 
 		try
@@ -21,29 +27,29 @@ public class RepositorioProjeto
 		} 
 		catch(SQLException e)
 		{	
-			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
-			{	
-				if (e.getMessage().toUpperCase().indexOf("PROJETO_COD_PK") != -1)
-				{	throw new Excecao(1, "Código já existente.");
-				}
-				
-				else
-				{	System.out.println('\n' + "Erro na inclusão de um Projeto.");
+//			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
+//			{	
+//				if (e.getMessage().toUpperCase().indexOf("PROJETO_COD_PK") != -1)
+//				{	throw new Excecao(1, "Código já existente.");
+//				}
+//				
+//				else
+//				{	System.out.println('\n' + "Erro na inclusão de um Projeto.");
 					e.printStackTrace();
-					System.exit(1);			
-				}
-			}
-			else
-			{	e.printStackTrace();
-				System.exit(1);
-			} 
+//					System.exit(1);			
+//				}
+//			}
+//			else
+//			{	e.printStackTrace();
+//				System.exit(1);
+//			} 
 		}
 
-		return pk;
+		return 0;
 	}
 
-	public static boolean alterar (Connection conn, int cod, String cpf, Date inicio, Date fim, double valor) 
-		throws Excecao
+	public static boolean alterar (Connection conn, int cod, String cpf, String inicio, String fim, double valor) 
+		throws SQLException
 	{		
 		int n = 0;
 
@@ -62,21 +68,21 @@ public class RepositorioProjeto
 		}
 		catch(SQLException e)
 		{	
-			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
-			{	
-				if (e.getMessage().toUpperCase().indexOf("PROJETO_COD_PK") != -1)
-				{	throw new Excecao(1, "Código já existente.");
-				}
-				else
-				{	System.out.println('\n' + "Erro na inclusão de um Projeto.");
+//			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
+//			{	
+//				if (e.getMessage().toUpperCase().indexOf("PROJETO_COD_PK") != -1)
+//				{	throw new Excecao(1, "Código já existente.");
+//				}
+//				else
+//				{	System.out.println('\n' + "Erro na inclusão de um Projeto.");
 					e.printStackTrace();
-					System.exit(1);			
-				}
-			}
-			else
-			{	e.printStackTrace();
-				System.exit(1);
-			} 
+//					System.exit(1);			
+//				}
+//			}
+//			else
+//			{	e.printStackTrace();
+//				System.exit(1);
+//			} 
 		}
 
 		return n == 1;
@@ -108,7 +114,7 @@ public class RepositorioProjeto
 	}
 
 	public static Projeto recuperaUmProjeto(Connection conn, int cod)
-	{	Empregado e = null;
+	{	Projeto e = null;
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement
@@ -118,7 +124,7 @@ public class RepositorioProjeto
 			pstmt.setInt(1, cod);
 			ResultSet rs = pstmt.executeQuery();
 	 		if (rs.next())
-	 		{	e = new Empregado(rs.getInt("COD"),
+	 		{	e = new Projeto(rs.getInt("COD"),
 					              rs.getString("CPF"),
 								  rs.getString("DATA_INICIO"),
 					              rs.getString("DATA_FIM"), 

@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
+
+import trabalho.poo.model.RepositorioClientes;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -184,7 +187,7 @@ public class MenuOperacional extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//cadastrar(textField, textField_1, textField_2, formattedTextFieldCPF, formattedTextFieldTel)
-			}
+				RepositorioClientes repoClientes = new RepositorioClientes();			}
 		});
 		btnCadastrar.setBounds(357, 423, 89, 23);
 		contentPane.add(btnCadastrar);

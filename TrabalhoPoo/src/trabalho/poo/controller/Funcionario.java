@@ -1,29 +1,32 @@
 package trabalho.poo.controller;
 
+
 public class Funcionario {
 	
-    private int cod;
+	private String func;
     private String nome;
-    private int telefone;
+    private String telefone;
     private String endereco;
-    private static int cont = 0;
 
-    public Funcionario(String nome, int telefone, String endereco) {
-        this.cod = ++cont;
+    public Funcionario(String func ,String nome, String telefone, String endereco) {
+    	this.func = func;
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
     }
 
-    public int getCod() {
-        return cod;
-    }
 
-    public void setCod(int cod) {
-        this.cod = cod;
-    }
+    public String getFunc() {
+		return func;
+	}
 
-    public String getNome() {
+
+	public void setFunc(String func) {
+		this.func = func;
+	}
+
+
+	public String getNome() {
         return nome;
     }
 
@@ -31,11 +34,11 @@ public class Funcionario {
         this.nome = nome;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

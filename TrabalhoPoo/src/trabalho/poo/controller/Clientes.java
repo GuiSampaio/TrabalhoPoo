@@ -2,26 +2,27 @@ package trabalho.poo.controller;
 
 public class Clientes {
 	
-    private int CPF;
+    private String CPF;
     private String nome;
     private String endereco;
-    private int telefone;
+    private String telefone;
     private String email;
   
     
-    public Clientes(int CPF, String nome, String endereco, int telefone, String email){
+    public Clientes(String CPF, String nome, String endereco, String telefone, String email){
         this.CPF = CPF;
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
+       
     }
 
-    public int getCPF() {
+    public String getCPF() {
         return CPF;
     }
 
-    public void setCPF(int CPF) throws ExcecaoClientes {
+    public void setCPF(String CPF) throws ExcecaoClientes {
             this.CPF = CPF;
         
         System.out.println("CPF atualizado com sucesso");
@@ -43,11 +44,11 @@ public class Clientes {
         this.endereco = endereco;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

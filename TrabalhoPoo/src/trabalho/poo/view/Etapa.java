@@ -134,6 +134,7 @@ public class Etapa extends JFrame {
 		btnCadastrarEtapa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//cadastra_etapa(formattedTextField, formattedTextfield_1)
+				//trabalho.poo.controller.Etapa etapa = new trabalho.poo.controller.Etapa(Math.random(), Math.random(), formattedTextField., formattedTextfield_1);
 			}
 		});
 		btnCadastrarEtapa.setBounds(283, 169, 176, 23);

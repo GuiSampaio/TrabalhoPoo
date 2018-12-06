@@ -6,6 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
+
+import trabalho.poo.model.ConnectionFactory;
+import trabalho.poo.model.LoginRepositorio;
+
 import javax.swing.JPasswordField;
 import javax.swing.SwingUtilities;
 import javax.swing.JLabel;
@@ -17,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
@@ -90,51 +95,67 @@ public class Login extends JFrame {
 		lblSenha.setBounds(186, 247, 48, 14);
 		contentPane.add(lblSenha);
 		
+		JFormattedTextField formattedTextFieldUsuario = new JFormattedTextField(Mascara("###.###.###-##"));
+		formattedTextFieldUsuario.setBounds(226, 205, 303, 20);
+		contentPane.add(formattedTextFieldUsuario);
+		
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//if(funcao == 1) Gerente
-				/*	EventQueue.invokeLater(new Runnable() {
-				 *		public void run() {
-				 *		try {
-				 *			dispose();
-				 *			MenuGerente frame = new MenuGerente();
-				 *			frame.setVisible(true);
-				 *		} catch (Exception e) {
-				 *			e.printStackTrace();
-				 *		}
-				 *	}
-				 *});
-				 */
 				
-				//if(funcao == 2) RH
-				/*	EventQueue.invokeLater(new Runnable() {
-				 *		public void run() {
-				 *		try {
-				 *			dispose();
-				 *			MenuRH frame = new MenuRH();
-				 *			frame.setVisible(true);
-				 *		} catch (Exception e) {
-				 *			e.printStackTrace();
-				 *		}
-				 *	}
-				 *});
-				 */
+				LoginRepositorio login = new LoginRepositorio();
+				try {
+					if( login.login(ConnectionFactory.getConnection(), formattedTextFieldUsuario.getText())== 1) //Gerente
+						EventQueue.invokeLater(new Runnable() {
+					 		public void run() {
+					 		try {
+					 			dispose();
+					 			MenuGerente frame = new MenuGerente();
+					 			frame.setVisible(true);
+					 		} catch (Exception e) {
+					 			e.printStackTrace();
+					 		}
+					 	}
+					 });
+					
+					if(login.login(ConnectionFactory.getConnection(), formattedTextFieldUsuario.getText()) == 2)//RH
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+							try {
+								dispose();
+								MenuRH frame = new MenuRH();
+								frame.setVisible(true);
+							} catch (Exception e) {
+							e.printStackTrace();
+							}
+						}
+					});
+					
+					
+					if(login.login(ConnectionFactory.getConnection(), formattedTextFieldUsuario.getText()) == 3) //Operacional
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+					 		try {
+					 		dispose();
+					 			MenuOperacional frame = new MenuOperacional();
+					 			frame.setVisible(true);
+						} catch (Exception e) {
+					 			e.printStackTrace();
+					 		}
+					 	}
+					 });
+					 
+					
+					
+					
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				 
 				
-				//if(funcao == 3) Operacional
-				/*	EventQueue.invokeLater(new Runnable() {
-				 *		public void run() {
-				 *		try {
-				 *			dispose();
-				 *			MenuOperacional frame = new MenuOperacional();
-				 *			frame.setVisible(true);
-				 *		} catch (Exception e) {
-				 *			e.printStackTrace();
-				 *		}
-				 *	}
-				 *});
-				 */
 				
 				Window window = SwingUtilities.windowForComponent(btnEntrar);
 				window.setVisible(false);
@@ -143,10 +164,6 @@ public class Login extends JFrame {
 		});
 		btnEntrar.setBounds(237, 307, 131, 57);
 		contentPane.add(btnEntrar);
-		
-		JFormattedTextField formattedTextFieldUsuario = new JFormattedTextField(Mascara("###.###.###-##"));
-		formattedTextFieldUsuario.setBounds(226, 205, 303, 20);
-		contentPane.add(formattedTextFieldUsuario);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {

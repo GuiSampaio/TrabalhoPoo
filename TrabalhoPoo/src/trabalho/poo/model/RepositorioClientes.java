@@ -1,9 +1,14 @@
+package trabalho.poo.model;
+
 import java.util.*;
+
+import trabalho.poo.controller.Clientes;
+
 import java.sql.*;
 
 public class RepositorioClientes
 {	public static int incluir (Connection conn, String cpf, String nome, String end, String tel, String email) 
-		throws Excecao
+		throws SQLException
 	{		
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement 
@@ -20,31 +25,31 @@ public class RepositorioClientes
 		} 
 		catch(SQLException e)
 		{	
-			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
-			{	
-				if (e.getMessage().toUpperCase().indexOf("CLIENTES_CPF_PK") != -1)
-				{	throw new Excecao(1, "CPF já existente.");
-				}
-				else if (e.getMessage().toUpperCase().indexOf("CLIENTES_NOME_UN") != -1)
-				{	throw new Excecao(2, "Nome duplicado.");
-				}
-				else
-				{	System.out.println('\n' + "Erro na inclusão de um Cliente.");
+//			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
+//			{	
+//				if (e.getMessage().toUpperCase().indexOf("CLIENTES_CPF_PK") != -1)
+//				{	throw new Excecao(1, "CPF já existente.");
+//				}
+//				else if (e.getMessage().toUpperCase().indexOf("CLIENTES_NOME_UN") != -1)
+//				{	throw new Excecao(2, "Nome duplicado.");
+//				}
+//				else
+//				{	System.out.println('\n' + "Erro na inclusão de um Cliente.");
 					e.printStackTrace();
-					System.exit(1);			
-				}
-			}
-			else
-			{	e.printStackTrace();
-				System.exit(1);
-			} 
+//					System.exit(1);			
+//				}
+//			}
+//			else
+//			{	e.printStackTrace();
+//				System.exit(1);
+//			} 
 		}
 
-		return pk;
+		return 0;
 	}
 
 	public static boolean alterar (Connection conn, String cpf, String nome, String end, String tel, String email) 
-		throws Excecao
+		throws SQLException
 	{		
 		int n = 0;
 
@@ -63,24 +68,24 @@ public class RepositorioClientes
 		}
 		catch(SQLException e)
 		{	
-			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
-			{	
-				if (e.getMessage().toUpperCase().indexOf("CLIENTES_CPF_PK") != -1)
-				{	throw new Excecao(1, "CPF já existente!");
-				}
-				else if (e.getMessage().toUpperCase().indexOf("CLIENTES_NOME_UN") != -1)
-				{	throw new Excecao(2, "Nome duplicado.");
-				}
-				else
-				{	System.out.println('\n' + "Erro na alteração do Cliente.");
+//			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
+//			{	
+//				if (e.getMessage().toUpperCase().indexOf("CLIENTES_CPF_PK") != -1)
+//				{	throw new Excecao(1, "CPF já existente!");
+//				}
+//				else if (e.getMessage().toUpperCase().indexOf("CLIENTES_NOME_UN") != -1)
+//				{	throw new Excecao(2, "Nome duplicado.");
+//				}
+//				else
+//				{	System.out.println('\n' + "Erro na alteração do Cliente.");
 					e.printStackTrace();
-					System.exit(1);			
-				}
-			}
-			else
-			{	e.printStackTrace();
-				System.exit(1);
-			} 
+//					System.exit(1);			
+//				}
+//			}
+//			else
+//			{	e.printStackTrace();
+//				System.exit(1);
+//			} 
 		}
 
 		return n == 1;
@@ -111,22 +116,23 @@ public class RepositorioClientes
 		return n == 1;
 	}
 
-	public static Cliente recuperaUmCliente(Connection conn, String cpf)
-	{	Empregado e = null;
+	public static Clientes recuperaUmCliente(Connection conn, String cpf)
+	{	Clientes e = null;
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement
-				("SELECT NOME, ENDERECO,B TELEFONE, EMAIL FROM CLIENTES " +
+				("SELECT NOME, ENDERECO,B TELEFONE FROM FUNCIONARIOS " +
 	 			 "WHERE CPF = ?"); 
 
 			pstmt.setString(1, cpf);
 			ResultSet rs = pstmt.executeQuery();
 	 		if (rs.next())
-	 		{	e = new Empregado(rs.getString("CPF"),
+	 		{	e = new Clientes(rs.getString("CPF"),
 					              rs.getString("NOME"), 
 					              rs.getString("ENDERECO"), 
-						          rs.getString("TELEFONE")
-								  rs.getString("EMAIL"));
+						          rs.getString("TELEFONE"),
+						          rs.getString("EMAIL")
+						          );
 	 		}
 	 		pstmt.close();
 		}	

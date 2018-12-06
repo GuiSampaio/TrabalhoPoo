@@ -3,6 +3,9 @@ package trabalho.poo.view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import trabalho.poo.controller.*;
+import trabalho.poo.model.ConnectionFactory;
+import trabalho.poo.model.RepositorioFuncionarios;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class MenuRH extends JFrame {
@@ -114,7 +118,13 @@ public class MenuRH extends JFrame {
 		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//cadastrar(textField_1, formattedTextField, textField, textField_2)
+				Funcionario umFuncionario = new Funcionario(textField_2.getText(), textField_1.getText(), formattedTextField.getText(), textField.getText());
+				RepositorioFuncionarios funcionarios = new RepositorioFuncionarios();
+				try {
+					funcionarios.incluir(ConnectionFactory.getConnection(), umFuncionario);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnCadastrar.setBounds(325, 380, 89, 23);

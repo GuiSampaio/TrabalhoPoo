@@ -16,8 +16,10 @@ public class ConnectionFactory {
 		
 		try {
 			Class.forName(DRIVER);
-			return DriverManager.getConnection(URL, USER, PASSWD);
+			System.out.println("Tentando abrir conexão AAAAAAAAAAHHHHHHHHHHHHHH!!!!!!!!!");
+			return DriverManager.getConnection(URL, USER, PASSWD); 
 		}catch (ClassNotFoundException e) {
+			System.out.println("Erro de conexão!!!!!!!!!!!!!!!!!!!!!!!!!!");
 			throw new SQLException(e.getMessage());
 		}
 		

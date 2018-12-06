@@ -28,9 +28,9 @@ public class Principal {
                     case 1:
                   String nome = Console.readLine("Insira seu nome:\n");                     
                      
-                  int cpf = Console.readInt("Insira seu CPF:\n");
+                  String cpf = Console.readLine("Insira seu CPF:\n");
                      
-                  int telefone = Console.readInt("Insira telefone:\n");
+                  String telefone = Console.readLine("Insira telefone:\n");
                      
                   String email = Console.readLine("Insira seu email:\n");
                      
@@ -38,7 +38,7 @@ public class Principal {
 
                      try{
                     	 
-                    	 umCliente = new Clientes(cpf, nome, endereco, telefone, email);    
+                    	 umCliente = new Clientes(cpf, nome, endereco, telefone);    
                     	 listaDeClientes.adicionar(umCliente);
                      
                      }

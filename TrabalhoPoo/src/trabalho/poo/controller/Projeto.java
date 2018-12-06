@@ -3,59 +3,59 @@ package trabalho.poo.controller;
 public class Projeto {
 	
 	   private int cod;
-	   private Clientes cpf;
-	   private float dataIni;
-	   private float dataFim;
-	   private float valor;
-	   private static int cont;
+	   private String cpf;
+	   private String dataIni;
+	   private String dataFim;
+	   private Double valor;
 	   
-	    public Projeto(Clientes CPF, float dataIni, float dataFim){
-	        this.cod = ++cont;
-	        this.cpf = CPF;
-	        this.dataIni = dataIni;
-	        this.dataFim = dataFim;
-	        this.valor = (this.dataFim - this.dataIni)* 150;
-	    }
-
-	    public int getCod() {
-	        return cod;
-	    }
-
-	    public void setCod(int cod) {
+	   
+	    public Projeto(int cod, String cpf, String dataIni, String dataFim, Double valor){
 	        this.cod = cod;
-	    }
-
-	    public void getCpf(){
-	        cpf.getCPF();
-	    }
-
-	    public void setCpf(Clientes cpf) {
 	        this.cpf = cpf;
-	    }
-
-	    public float getDataIni() {
-	        return dataIni;
-	    }
-
-	    public void setDataIni(float dataIni) {
 	        this.dataIni = dataIni;
-	    }
-
-	    public float getDataFim() {
-	        return dataFim;
-	    }
-
-	    public void setDataFim(float dataFim) {
 	        this.dataFim = dataFim;
+	        this.valor = (Double.parseDouble(dataFim) - Double.parseDouble(dataIni))* 150;
 	    }
 
-	    public float getValor() {
-	        return valor;
-	    }
+		public int getCod() {
+			return cod;
+		}
 
-	    public void setValor(float valor) {
-	        this.valor = (this.dataFim - this.dataIni) * valor;
-	    }
-	    
+		public void setCod(int cod) {
+			this.cod = cod;
+		}
+
+		public String getCpf() {
+			return cpf;
+		}
+
+		public void setCpf(String cpf) {
+			this.cpf = cpf;
+		}
+
+		public String getDataIni() {
+			return dataIni;
+		}
+
+		public void setDataIni(String dataIni) {
+			this.dataIni = dataIni;
+		}
+
+		public String getDataFim() {
+			return dataFim;
+		}
+
+		public void setDataFim(String dataFim) {
+			this.dataFim = dataFim;
+		}
+
+		public Double getValor() {
+			return valor;
+		}
+
+		public void setValor(Double valor) {
+			this.valor = valor;
+		}
+  
 	    
 	}

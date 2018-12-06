@@ -8,7 +8,6 @@ public class GerenciaDeProjeto {
 	
 	public GerenciaDeProjeto(int projCod, int funcCod) {
 		super();
-		this.funcionario.setCod(funcCod);
 		this.projeto.setCod(projCod);
 	}
 	

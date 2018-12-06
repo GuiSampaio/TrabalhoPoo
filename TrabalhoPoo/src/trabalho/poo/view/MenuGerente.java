@@ -1,5 +1,6 @@
 package trabalho.poo.view;
 
+import trabalho.poo.controller.*;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -108,7 +109,7 @@ public class MenuGerente extends JFrame {
 		JButton btnAlocar = new JButton("Alocar");
 		btnAlocar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//alocar(textField_1,  textField_2, textField_3)
+				//Alocado.Alocado(textField_1,  textField_2, textField_3);
 			}
 		});
 		btnAlocar.setBounds(323, 347, 89, 23);
