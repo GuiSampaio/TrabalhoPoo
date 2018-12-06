@@ -10,6 +10,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.awt.event.ActionEvent;
 
 public class MenuGerente extends JFrame {
 
@@ -51,6 +59,16 @@ public class MenuGerente extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnEmitirRelatrio = new JButton("Emitir Relat\u00F3rio");
+		btnEmitirRelatrio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C:\\relatórios"), StandardCharsets.UTF_8))) {
+				    writer.write("qualquer coisa");
+				} 
+				catch (IOException ex) {
+				    // Handle me
+				}  
+			}
+		});
 		btnEmitirRelatrio.setBounds(668, 510, 106, 40);
 		contentPane.add(btnEmitirRelatrio);
 		
@@ -88,6 +106,11 @@ public class MenuGerente extends JFrame {
 		textField_3.setColumns(10);
 		
 		JButton btnAlocar = new JButton("Alocar");
+		btnAlocar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//alocar(textField_1,  textField_2, textField_3)
+			}
+		});
 		btnAlocar.setBounds(323, 347, 89, 23);
 		contentPane.add(btnAlocar);
 	}

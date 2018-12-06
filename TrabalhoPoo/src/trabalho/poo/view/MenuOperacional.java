@@ -7,14 +7,32 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuOperacional extends JFrame {
+	
+	public MaskFormatter Mascara(String Mascara){
+        MaskFormatter F_Mascara = new MaskFormatter();
+        try{
+            F_Mascara.setMask(Mascara); 
+            F_Mascara.setPlaceholderCharacter(' ');
+        }
+        catch (Exception excecao) {
+        excecao.printStackTrace();
+        } 
+        return F_Mascara;
+	}
 
 	/**
 	 * 
@@ -24,8 +42,6 @@ public class MenuOperacional extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -63,10 +79,48 @@ public class MenuOperacional extends JFrame {
 		JMenu mnProjeto = new JMenu("Projeto...");
 		mnCadastrar.add(mnProjeto);
 		
-		JMenuItem mntmProjeto = new JMenuItem("Projeto");
+		JMenuItem mntmProjeto = new JMenuItem(new AbstractAction("Projeto") {
+		    /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							dispose();
+							Projeto frame = new Projeto();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+		    }
+		});
 		mnProjeto.add(mntmProjeto);
 		
-		JMenuItem mntmEtapa = new JMenuItem("Etapa");
+		JMenuItem mntmEtapa = new JMenuItem(new AbstractAction("Etapa") {
+		    /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							dispose();
+							Etapa frame = new Etapa();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		mnProjeto.add(mntmEtapa);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -91,7 +145,7 @@ public class MenuOperacional extends JFrame {
 		contentPane.add(lblEndereco);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(377, 174, 86, 20);
+		textField_1.setBounds(377, 174, 99, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -101,10 +155,9 @@ public class MenuOperacional extends JFrame {
 		lblTel.setBounds(311, 232, 59, 14);
 		contentPane.add(lblTel);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(375, 229, 86, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		JFormattedTextField formattedTextFieldTel = new JFormattedTextField(Mascara("(##) # ####-####"));
+		formattedTextFieldTel.setBounds(371, 229, 105, 20);
+		contentPane.add(formattedTextFieldTel);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setForeground(new Color(0,100,0));
@@ -112,23 +165,27 @@ public class MenuOperacional extends JFrame {
 		lblCpf.setBounds(333, 286, 28, 14);
 		contentPane.add(lblCpf);
 		
+		JFormattedTextField formattedTextFieldCPF = new JFormattedTextField(Mascara("###.###.###-##"));
+		formattedTextFieldCPF.setBounds(375, 283, 101, 20);
+		contentPane.add(formattedTextFieldCPF);
+		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setForeground(new Color(0,100,0));
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblEmail.setBounds(333, 335, 46, 14);
 		contentPane.add(lblEmail);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(375, 283, 86, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(375, 332, 86, 20);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
+		textField_2 = new JTextField();
+		textField_2.setBounds(380, 329, 96, 20);
+		contentPane.add(textField_2);
+		textField_2.setColumns(10);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//cadastrar(textField, textField_1, textField_2, formattedTextFieldCPF, formattedTextFieldTel)
+			}
+		});
 		btnCadastrar.setBounds(357, 423, 89, 23);
 		contentPane.add(btnCadastrar);
 	}

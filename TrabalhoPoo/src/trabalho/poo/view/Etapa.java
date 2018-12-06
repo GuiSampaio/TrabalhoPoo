@@ -10,8 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 import javax.swing.JLabel;
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Etapa extends JFrame {
 	public MaskFormatter Mascara(String Mascara){
@@ -31,6 +35,7 @@ public class Etapa extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -63,13 +68,51 @@ public class Etapa extends JFrame {
 		JMenu mnCadastrar = new JMenu("Cadastrar");
 		menuBar.add(mnCadastrar);
 		
-		JMenuItem mntmCliente = new JMenuItem("Cliente");
+		JMenuItem mntmCliente = new JMenuItem(new AbstractAction("Cliente") {
+		    /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							dispose();
+							MenuOperacional frame = new MenuOperacional();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		mnCadastrar.add(mntmCliente);
 		
 		JMenu mnProjeto = new JMenu("Projeto...");
 		mnCadastrar.add(mnProjeto);
 		
-		JMenuItem mntmProjeto = new JMenuItem("Projeto");
+		JMenuItem mntmProjeto = new JMenuItem(new AbstractAction("Projeto") {
+		    /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							dispose();
+							Projeto frame = new Projeto();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+		    }
+		});
 		mnProjeto.add(mntmProjeto);
 		
 		JMenuItem mntmEtapa = new JMenuItem("Etapa");
@@ -80,31 +123,55 @@ public class Etapa extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblInicio = new JLabel("Inicio:");
-		lblInicio.setBounds(111, 106, 37, 14);
+		lblInicio.setBounds(283, 76, 37, 14);
 		contentPane.add(lblInicio);
 		
 		JLabel lblFinal = new JLabel("Final:");
-		lblFinal.setBounds(91, 172, 46, 14);
+		lblFinal.setBounds(283, 118, 46, 14);
 		contentPane.add(lblFinal);
 		
 		JButton btnCadastrarEtapa = new JButton("Cadastrar etapa");
-		btnCadastrarEtapa.setBounds(179, 312, 176, 23);
+		btnCadastrarEtapa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//cadastra_etapa(formattedTextField, formattedTextfield_1)
+			}
+		});
+		btnCadastrarEtapa.setBounds(283, 169, 176, 23);
 		contentPane.add(btnCadastrarEtapa);
 		
 		JButton btnEditarEtapa = new JButton("Editar etapa");
-		btnEditarEtapa.setBounds(179, 381, 151, 23);
+		btnEditarEtapa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//editar_etapa(formattedTextField, formattedTextfield_1, textField)
+			}
+		});
+		btnEditarEtapa.setBounds(232, 297, 151, 23);
 		contentPane.add(btnEditarEtapa);
 		
 		JButton btnExcluirEtapa = new JButton("Excluir etapa");
-		btnExcluirEtapa.setBounds(190, 444, 140, 23);
+		btnExcluirEtapa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//excluir_etapa(textField)
+			}
+		});
+		btnExcluirEtapa.setBounds(393, 297, 140, 23);
 		contentPane.add(btnExcluirEtapa);
 		
 		JFormattedTextField formattedTextField = new JFormattedTextField(Mascara("##/##/####"));
-		formattedTextField.setBounds(187, 103, 98, 20);
+		formattedTextField.setBounds(330, 73, 98, 20);
 		contentPane.add(formattedTextField);
 		
 		JFormattedTextField formattedTextField_1 = new JFormattedTextField(Mascara("##/##/####"));
-		formattedTextField_1.setBounds(187, 169, 90, 20);
+		formattedTextField_1.setBounds(330, 115, 98, 20);
 		contentPane.add(formattedTextField_1);
+		
+		JLabel lblId = new JLabel("ID:");
+		lblId.setBounds(318, 251, 46, 14);
+		contentPane.add(lblId);
+		
+		textField = new JTextField();
+		textField.setBounds(340, 248, 86, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
 	}
 }

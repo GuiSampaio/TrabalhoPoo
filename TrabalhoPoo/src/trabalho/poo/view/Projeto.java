@@ -13,8 +13,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Projeto extends JFrame {
 	
@@ -66,7 +69,26 @@ public class Projeto extends JFrame {
 		JMenu mnCadastrar = new JMenu("Cadastrar");
 		menuBar.add(mnCadastrar);
 		
-		JMenuItem mntmCliente = new JMenuItem("Cliente");
+		JMenuItem mntmCliente = new JMenuItem(new AbstractAction("Cliente") {
+		    /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							dispose();
+							MenuOperacional frame = new MenuOperacional();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		mnCadastrar.add(mntmCliente);
 		
 		JMenu mnProjeto = new JMenu("Projeto...");
@@ -75,7 +97,26 @@ public class Projeto extends JFrame {
 		JMenuItem mntmProjeto = new JMenuItem("Projeto");
 		mnProjeto.add(mntmProjeto);
 		
-		JMenuItem mntmEtapa = new JMenuItem("Etapa");
+		JMenuItem mntmEtapa = new JMenuItem(new AbstractAction("Etapa") {
+		    /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							dispose();
+							Etapa frame = new Etapa();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		mnProjeto.add(mntmEtapa);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -100,6 +141,11 @@ public class Projeto extends JFrame {
 		textField_1.setColumns(10);
 		
 		JButton btnCadastrarProjeto = new JButton("Cadastrar projeto");
+		btnCadastrarProjeto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//cadastrarProjeto(formattedTextField, textField_1)
+			}
+		});
 		btnCadastrarProjeto.setBounds(283, 278, 168, 23);
 		contentPane.add(btnCadastrarProjeto);
 		

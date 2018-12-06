@@ -5,17 +5,32 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JPasswordField;
+import javax.swing.SwingUtilities;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.Window;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
+	public MaskFormatter Mascara(String Mascara){
+        MaskFormatter F_Mascara = new MaskFormatter();
+        try{
+            F_Mascara.setMask(Mascara); 
+            F_Mascara.setPlaceholderCharacter(' ');
+        }
+        catch (Exception excecao) {
+        excecao.printStackTrace();
+        } 
+        return F_Mascara;
+	}
 
 	/**
 	 * 
@@ -23,7 +38,6 @@ public class Login extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPasswordField passwordField;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -64,11 +78,6 @@ public class Login extends JFrame {
 		passwordField.setBounds(226, 244, 303, 20);
 		contentPane.add(passwordField);
 		
-		textField = new JTextField();
-		textField.setBounds(226, 205, 303, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblUsurio = new JLabel("Usu\u00E1rio:");
 		lblUsurio.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblUsurio.setForeground(new Color(0, 100, 0));
@@ -82,13 +91,76 @@ public class Login extends JFrame {
 		contentPane.add(lblSenha);
 		
 		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//if(funcao == 1) Gerente
+				/*	EventQueue.invokeLater(new Runnable() {
+				 *		public void run() {
+				 *		try {
+				 *			dispose();
+				 *			MenuGerente frame = new MenuGerente();
+				 *			frame.setVisible(true);
+				 *		} catch (Exception e) {
+				 *			e.printStackTrace();
+				 *		}
+				 *	}
+				 *});
+				 */
+				
+				//if(funcao == 2) RH
+				/*	EventQueue.invokeLater(new Runnable() {
+				 *		public void run() {
+				 *		try {
+				 *			dispose();
+				 *			MenuRH frame = new MenuRH();
+				 *			frame.setVisible(true);
+				 *		} catch (Exception e) {
+				 *			e.printStackTrace();
+				 *		}
+				 *	}
+				 *});
+				 */
+				
+				//if(funcao == 3) Operacional
+				/*	EventQueue.invokeLater(new Runnable() {
+				 *		public void run() {
+				 *		try {
+				 *			dispose();
+				 *			MenuOperacional frame = new MenuOperacional();
+				 *			frame.setVisible(true);
+				 *		} catch (Exception e) {
+				 *			e.printStackTrace();
+				 *		}
+				 *	}
+				 *});
+				 */
+				
+				Window window = SwingUtilities.windowForComponent(btnEntrar);
+				window.setVisible(false);
+				
+			}
+		});
 		btnEntrar.setBounds(237, 307, 131, 57);
 		contentPane.add(btnEntrar);
+		
+		JFormattedTextField formattedTextFieldUsuario = new JFormattedTextField(Mascara("###.###.###-##"));
+		formattedTextFieldUsuario.setBounds(226, 205, 303, 20);
+		contentPane.add(formattedTextFieldUsuario);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							CadastroLog frame = new CadastroLog();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
 			}
 		});
 		btnCadastrar.setBounds(380, 307, 131, 57);

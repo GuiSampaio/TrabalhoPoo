@@ -7,12 +7,26 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuRH extends JFrame {
+	public MaskFormatter Mascara(String Mascara){
+        MaskFormatter F_Mascara = new MaskFormatter();
+        try{
+            F_Mascara.setMask(Mascara); 
+            F_Mascara.setPlaceholderCharacter(' ');
+        }
+        catch (Exception excecao) {
+        excecao.printStackTrace();
+        } 
+        return F_Mascara;
+	}
 
 	/**
 	 * 
@@ -82,7 +96,7 @@ public class MenuRH extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		formattedTextField = new JFormattedTextField();
+		formattedTextField = new JFormattedTextField(Mascara("(##) # ####-####"));
 		formattedTextField.setBounds(328, 195, 89, 20);
 		contentPane.add(formattedTextField);
 		
@@ -98,6 +112,11 @@ public class MenuRH extends JFrame {
 		textField_2.setColumns(10);
 		
 		btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//cadastrar(textField_1, formattedTextField, textField, textField_2)
+			}
+		});
 		btnCadastrar.setBounds(325, 380, 89, 23);
 		contentPane.add(btnCadastrar);
 	}
