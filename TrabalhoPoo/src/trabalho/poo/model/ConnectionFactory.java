@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class ConnectionFactory {
 	
-	private static String DRIVER = "";
-	private static String URL 	 = "";
-	private static String USER	 = "";
-	private static String PASSWD = "";
+	private static String DRIVER = "TrabalhoPoo/TrabalhoPoo/libs/portgres";
+	private static String URL 	 = "bancopoo.postgresql.dbaas.com.br";
+	private static String USER	 = "bancopoo";
+	private static String PASSWD = "unilasalle1";
 	
 	public static Connection getConnection() throws SQLException{
 		
