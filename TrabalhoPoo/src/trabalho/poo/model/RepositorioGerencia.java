@@ -1,9 +1,16 @@
+package trabalho.poo.model;
+
 import java.util.*;
+
+import trabalho.poo.controller.Clientes;
+import trabalho.poo.controller.Funcionario;
+import trabalho.poo.controller.GerenciaDeProjeto;
+
 import java.sql.*;
 
 public class RepositorioGerencia
 {	public static int incluir (Connection conn, int cod_proj, int cod_func) 
-		throws Excecao
+		throws SQLException
 	{		
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement 
@@ -17,31 +24,31 @@ public class RepositorioGerencia
 		} 
 		catch(SQLException e)
 		{	
-			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
-			{	
-				if (e.getMessage().toUpperCase().indexOf("GERENCIA_PROJ_COD_FK") != -1)
-				{	throw new Excecao(1, "Codigo de Projeto duplicado.");
-				}
-				else if (e.getMessage().toUpperCase().indexOf("GERENCIA_FUNC_COD_FK") != -1)
-				{	throw new Excecao(2, "Codigo de Funcionario duplicado.");
-				}
-				else
-				{	System.out.println('\n' + "Erro na inclusão de uma Gerencia.");
+//			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
+//			{	
+//				if (e.getMessage().toUpperCase().indexOf("GERENCIA_PROJ_COD_FK") != -1)
+//				{	throw new Excecao(1, "Codigo de Projeto duplicado.");
+//				}
+//				else if (e.getMessage().toUpperCase().indexOf("GERENCIA_FUNC_COD_FK") != -1)
+//				{	throw new Excecao(2, "Codigo de Funcionario duplicado.");
+//				}
+//				else
+//				{	System.out.println('\n' + "Erro na inclusão de uma Gerencia.");
 					e.printStackTrace();
-					System.exit(1);			
-				}
-			}
-			else
-			{	e.printStackTrace();
-				System.exit(1);
-			} 
+//					System.exit(1);			
+//				}
+//			}
+//			else
+//			{	e.printStackTrace();
+//				System.exit(1);
+//			} 
 		}
 
-		return pk;
+		return 0;
 	}
 
 	public static boolean alterar (Connection conn, int cod_proj, int cod_func) 
-		throws Excecao
+		throws SQLException
 	{		
 		int n = 0;
 
@@ -49,7 +56,7 @@ public class RepositorioGerencia
 		{	PreparedStatement pstmt = conn.prepareStatement 
 				("UPDATE GERENCIA SET PROJ_COD = ? WHERE FUNC_COD = ? ");
 				
-			pstmt.setString	(1, cod_proj);	
+			pstmt.setInt	(1, cod_proj);	
 			pstmt.setInt	(2, cod_func);
 				
 			n = pstmt.executeUpdate();
@@ -57,23 +64,24 @@ public class RepositorioGerencia
 		}
 		catch(SQLException e)
 		{	
-			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
-			{	
-				if (e.getMessage().toUpperCase().indexOf("GERENCIA_PROJ_COD_FK") != -1)
-				{	throw new Excecao(1, "Codigo de Projeto duplicado.");
-				}
-				
-				else
-				{	System.out.println('\n' + "Erro na alteração de uma Gerencia.");
+//			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
+//			{	
+//				if (e.getMessage().toUpperCase().indexOf("GERENCIA_PROJ_COD_FK") != -1)
+//				{	throw new Excecao(1, "Codigo de Projeto duplicado.");
+//				}
+//				
+//				else
+//				{	System.out.println('\n' + "Erro na alteração de uma Gerencia.");
 					e.printStackTrace();
-					System.exit(1);			
-				}
-			}
-			else
-			{	e.printStackTrace();
-				System.exit(1);
-			} 
-		}
+//					System.exit(1);			
+//				}
+//			}
+//			else
+//			{	e.printStackTrace();
+//				System.exit(1);
+//			} 
+//		}
+	 }
 
 		return n == 1;
 	}
@@ -104,8 +112,8 @@ public class RepositorioGerencia
 		return n == 1;
 	}
 
-	public static Cliente recuperaUmaGerencia(Connection conn, int cod_proj, int cod_func)
-	{	Empregado e = null;
+	public static GerenciaDeProjeto recuperaUmaGerencia(Connection conn, int cod_proj, int cod_func)
+	{	GerenciaDeProjeto e = null;
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement
@@ -116,8 +124,7 @@ public class RepositorioGerencia
 			pstmt.setInt(1, cod_func);
 			ResultSet rs = pstmt.executeQuery();
 	 		if (rs.next())
-	 		{	e = new Empregado(rs.getInt("PROJ_COD"),
-					              rs.getInt("FUNC_COD"));
+	 		{	e = new GerenciaDeProjeto(rs.getInt("PROJ_COD"), rs.getInt("FUNC_COD"));
 	 		}
 	 		pstmt.close();
 		}	

@@ -1,9 +1,14 @@
+package trabalho.poo.model;
+
 import java.util.*;
+
+import trabalho.poo.controller.Etapa;
+
 import java.sql.*;
 
 public class RepositorioEtapas
-{	public static int incluir (Connection conn, int cod, int cod_proj, Date inicio, Date fim) 
-		throws Excecao
+{	public static int incluir (Connection conn, int cod, int cod_proj, String inicio, String fim) 
+		throws SQLException
 	{	
 
 		try
@@ -11,7 +16,7 @@ public class RepositorioEtapas
 				("INSERT INTO ETAPAS (COD, PROJ_COD, DATA_INICIO, DATA_FIM) " +
 	   			 "VALUES (?, ?, ?, ?)");
 			pstmt.setInt (1, cod);
-			pstmt.setString	(2, cod_proj);	
+			pstmt.setInt	(2, cod_proj);	
 			pstmt.setString (3, inicio);
 			pstmt.setString (4, fim);
 
@@ -20,29 +25,29 @@ public class RepositorioEtapas
 		} 
 		catch(SQLException e)
 		{	
-			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
-			{	
-				if (e.getMessage().toUpperCase().indexOf("ETAPAS_COD_PK") != -1)
-				{	throw new Excecao(1, "Código já existente.");
-				}
-				
-				else
-				{	System.out.println('\n' + "Erro na inclusão de uma Etapa.");
+//			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
+//			{	
+//				if (e.getMessage().toUpperCase().indexOf("ETAPAS_COD_PK") != -1)
+//				{	throw new Excecao(1, "Código já existente.");
+//				}
+//				
+//				else
+//				{	System.out.println('\n' + "Erro na inclusão de uma Etapa.");
 					e.printStackTrace();
-					System.exit(1);			
-				}
-			}
-			else
-			{	e.printStackTrace();
-				System.exit(1);
-			} 
+//					System.exit(1);			
+//				}
+//			}
+//			else
+//			{	e.printStackTrace();
+//				System.exit(1);
+//			} 
 		}
 
-		return pk;
+		return 0;
 	}
 
-	public static boolean alterar (Connection conn, int cod, int cod_proj, Date inicio, Date fim) 
-		throws Excecao
+	public static boolean alterar (Connection conn, int cod, int cod_proj, String inicio, String fim) 
+		throws SQLException
 	{		
 		int n = 0;
 
@@ -61,21 +66,21 @@ public class RepositorioEtapas
 		}
 		catch(SQLException e)
 		{	
-			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
-			{	
-				if (e.getMessage().toUpperCase().indexOf("ETAPAS_COD_PK") != -1)
-				{	throw new Excecao(1, "Código já existente.");
-				}
-				else
-				{	System.out.println('\n' + "Erro na inclusão de uma Etapa.");
+//			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
+//			{	
+//				if (e.getMessage().toUpperCase().indexOf("ETAPAS_COD_PK") != -1)
+//				{	throw new Excecao(1, "Código já existente.");
+//				}
+//				else
+//				{	System.out.println('\n' + "Erro na inclusão de uma Etapa.");
 					e.printStackTrace();
-					System.exit(1);			
-				}
-			}
-			else
-			{	e.printStackTrace();
-				System.exit(1);
-			} 
+//					System.exit(1);			
+//				}
+//			}
+//			else
+//			{	e.printStackTrace();
+//				System.exit(1);
+//			} 
 		}
 
 		return n == 1;
@@ -107,8 +112,8 @@ public class RepositorioEtapas
 		return n == 1;
 	}
 
-	public static Projeto recuperaUmaEtapa(Connection conn, int cod, int cod_proj)
-	{	Empregado e = null;
+	public static Etapa recuperaUmaEtapa(Connection conn, int cod, int cod_proj)
+	{	Etapa e = null;
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement
@@ -119,7 +124,7 @@ public class RepositorioEtapas
 			pstmt.setInt(1, cod_proj);
 			ResultSet rs = pstmt.executeQuery();
 	 		if (rs.next())
-	 		{	e = new Empregado(rs.getInt("COD"),
+	 		{	e = new Etapa(rs.getInt("COD"),
 					              rs.getInt("PROJ_COD"),
 								  rs.getString("DATA_INICIO"),
 					              rs.getString("DATA_FIM"));

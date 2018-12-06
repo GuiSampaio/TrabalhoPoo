@@ -6,8 +6,8 @@ public class Cargo {
 	  private String descricao;
 	  private static int cont = 0;
 
-	    public Cargo(String nome, String descricao) {
-	        this.cod = ++cont;
+	    public Cargo(String nome, String descricao, int cod) {
+	        this.cod = cod;
 	        this.nome = nome;
 	        this.descricao = descricao;
 	    }

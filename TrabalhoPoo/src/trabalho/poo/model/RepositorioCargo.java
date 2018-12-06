@@ -1,9 +1,12 @@
+package trabalho.poo.model;
+
 import java.util.*;
+import trabalho.poo.controller.Cargo;
 import java.sql.*;
 
 public class RepositorioCargo
 {	public static int incluir (Connection conn, int cod, String nome, String desc) 
-		throws Excecao
+		throws SQLException
 	{		
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement 
@@ -19,28 +22,29 @@ public class RepositorioCargo
 		} 
 		catch(SQLException e)
 		{	
-			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
-			{	
-				if (e.getMessage().toUpperCase().indexOf("CARGO_COD_PK") != -1)
-				{	throw new Excecao(1, "Codigo de Cargo duplicado.");
-				}
-				else
-				{	System.out.println('\n' + "Erro na inclusão de um Cargo.");
+//			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
+//			{	
+//				if (e.getMessage().toUpperCase().indexOf("CARGO_COD_PK") != -1)
+//				{	throw new Excecao(1, "Codigo de Cargo duplicado.");
+//				}
+//				else
+//				{	System.out.println('\n' + "Erro na inclusão de um Cargo.");
 					e.printStackTrace();
-					System.exit(1);			
-				}
-			}
-			else
-			{	e.printStackTrace();
-				System.exit(1);
-			} 
+//					System.exit(1);			
+//				}
+//			}
+//			else
+//			{
+//				e.printStackTrace();
+//				System.exit(1);
+//			} 
 		}
 
-		return pk;
+		return 0;
 	}
 
 	public static boolean alterar (Connection conn, int cod, String nome, String desc) 
-		throws Excecao
+		throws SQLException
 	{		
 		int n = 0;
 
@@ -58,22 +62,22 @@ public class RepositorioCargo
 		}
 		catch(SQLException e)
 		{	
-			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
-			{	
-				if (e.getMessage().toUpperCase().indexOf("CARGO_COD_PK") != -1)
-				{	throw new Excecao(1, "Codigo de Cargo duplicado.");
-				}
-				
-				else
-				{	System.out.println('\n' + "Erro na alteração de um Cargo.");
+//			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
+//			{	
+//				if (e.getMessage().toUpperCase().indexOf("CARGO_COD_PK") != -1)
+//				{	throw new Excecao(1, "Codigo de Cargo duplicado.");
+//				}
+//				
+//				else
+//				{	System.out.println('\n' + "Erro na alteração de um Cargo.");
 					e.printStackTrace();
-					System.exit(1);			
-				}
-			}
-			else
-			{	e.printStackTrace();
-				System.exit(1);
-			} 
+//					System.exit(1);			
+//				}
+//			}
+//			else
+//			{	e.printStackTrace();
+//				System.exit(1);
+//			} 
 		}
 
 		return n == 1;
@@ -104,8 +108,8 @@ public class RepositorioCargo
 		return n == 1;
 	}
 
-	public static Cliente recuperaUmCargo(Connection conn, int cod)
-	{	Empregado e = null;
+	public static Cargo recuperaUmCargo(Connection conn, int cod)
+	{	Cargo e = null;
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement
@@ -115,7 +119,7 @@ public class RepositorioCargo
 			pstmt.setInt(1, cod);
 			ResultSet rs = pstmt.executeQuery();
 	 		if (rs.next())
-	 		{	e = new Empregado(rs.getString("NOME"),
+	 		{	e = new Cargo(rs.getString("NOME"),
 							 	  rs.getString("DESCRICAO"),
 					              rs.getInt("COD"));
 	 		}

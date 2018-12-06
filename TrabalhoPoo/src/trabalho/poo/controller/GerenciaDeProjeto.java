@@ -6,13 +6,14 @@ public class GerenciaDeProjeto {
 	private Projeto projeto;
 	
 	
-	public GerenciaDeProjeto(Funcionario funcionario, Projeto projeto) {
+	public GerenciaDeProjeto(int projCod, int funcCod) {
 		super();
-		this.funcionario = funcionario;
-		this.projeto = projeto;
+		this.funcionario.setCod(funcCod);
+		this.projeto.setCod(projCod);
 	}
 	
-	
+
+
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}

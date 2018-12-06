@@ -1,9 +1,14 @@
+package trabalho.poo.model;
+
 import java.util.*;
+
+import trabalho.poo.controller.Atividade;
+
 import java.sql.*;
 
 public class RepositorioAtividades
-{	public static int incluir (Connection conn, int cod, int cod_etapa, Date inicio, Date fim) 
-		throws Excecao
+{	public static int incluir (Connection conn, int cod, int cod_etapa, String inicio, String fim) 
+		throws SQLException
 	{	
 
 		try
@@ -11,7 +16,7 @@ public class RepositorioAtividades
 				("INSERT INTO ATIVIDADES (COD, ETAPAS_COD, DATA_INICIO, DATA_FIM) " +
 	   			 "VALUES (?, ?, ?, ?)");
 			pstmt.setInt (1, cod);
-			pstmt.setString	(2, cod_etapa);	
+			pstmt.setInt	(2, cod_etapa);	
 			pstmt.setString (3, inicio);
 			pstmt.setString (4, fim);
 
@@ -20,29 +25,29 @@ public class RepositorioAtividades
 		} 
 		catch(SQLException e)
 		{	
-			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
-			{	
-				if (e.getMessage().toUpperCase().indexOf("ATIVIDADES_COD_PK") != -1)
-				{	throw new Excecao(1, "Código já existente.");
-				}
-				
-				else
-				{	System.out.println('\n' + "Erro na inclusão de uma Atividade.");
+//			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
+//			{	
+//				if (e.getMessage().toUpperCase().indexOf("ATIVIDADES_COD_PK") != -1)
+//				{	throw new Excecao(1, "Código já existente.");
+//				}
+//				
+//				else
+//				{	System.out.println('\n' + "Erro na inclusão de uma Atividade.");
 					e.printStackTrace();
-					System.exit(1);			
-				}
-			}
-			else
-			{	e.printStackTrace();
-				System.exit(1);
-			} 
+//					System.exit(1);			
+//				}
+//			}
+//			else
+//			{	e.printStackTrace();
+//				System.exit(1);
+//			} 
 		}
 
-		return pk;
+		return 0;
 	}
 
-	public static boolean alterar (Connection conn, int cod, int cod_etapa, Date inicio, Date fim) 
-		throws Excecao
+	public static boolean alterar (Connection conn, int cod, int cod_etapa, String inicio, String fim) 
+		throws SQLException
 	{		
 		int n = 0;
 
@@ -61,21 +66,21 @@ public class RepositorioAtividades
 		}
 		catch(SQLException e)
 		{	
-			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
-			{	
-				if (e.getMessage().toUpperCase().indexOf("ATIVIDADES_COD_PK") != -1)
-				{	throw new Excecao(1, "Código já existente.");
-				}
-				else
-				{	System.out.println('\n' + "Erro na inclusão de uma Atividade.");
-					e.printStackTrace();
-					System.exit(1);			
-				}
-			}
-			else
-			{	e.printStackTrace();
-				System.exit(1);
-			} 
+//			if(e.getSQLState().equals(Constantes.VIOLACAO_INDICE_UNICO))
+//			{	
+//				if (e.getMessage().toUpperCase().indexOf("ATIVIDADES_COD_PK") != -1)
+//				{	throw new Excecao(1, "Código já existente.");
+//				}
+//				else
+//				{	System.out.println('\n' + "Erro na inclusão de uma Atividade.");
+				 e.printStackTrace();
+//					System.exit(1);			
+//				}
+//			}
+//			else
+//			{	e.printStackTrace();
+//				System.exit(1);
+//			} 
 		}
 
 		return n == 1;
@@ -107,8 +112,8 @@ public class RepositorioAtividades
 		return n == 1;
 	}
 
-	public static Projeto recuperaUmaAtividade(Connection conn, int cod, int cod_etapa)
-	{	Empregado e = null;
+	public static Atividade recuperaUmaAtividade(Connection conn, int cod, int cod_etapa)
+	{	Atividade e = null;
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement
@@ -119,7 +124,7 @@ public class RepositorioAtividades
 			pstmt.setInt(1, cod_etapa);
 			ResultSet rs = pstmt.executeQuery();
 	 		if (rs.next())
-	 		{	e = new Empregado(rs.getInt("COD"),
+	 		{	e = new Atividade(rs.getInt("COD"),
 					              rs.getInt("ETAPAS_COD"),
 								  rs.getString("DATA_INICIO"),
 					              rs.getString("DATA_FIM"));

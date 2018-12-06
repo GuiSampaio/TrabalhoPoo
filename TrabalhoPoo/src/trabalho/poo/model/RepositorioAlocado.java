@@ -2,6 +2,7 @@ package trabalho.poo.model;
 
 import java.util.*;
 
+import trabalho.poo.controller.Alocado;
 import trabalho.poo.controller.Clientes;
 import trabalho.poo.controller.Funcionario;
 
@@ -117,8 +118,8 @@ public class RepositorioAlocado
 		return n == 1;
 	}
 
-	public static Funcionario recuperaUmaAlocacao(Connection conn, int cod_func, int cod_ativ)
-	{	Funcionario e = null;
+	public static Alocado recuperaUmaAlocacao(Connection conn, int cod_func, int cod_ativ)
+	{	Alocado e = null;
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement
@@ -129,9 +130,10 @@ public class RepositorioAlocado
 			pstmt.setInt(2, cod_ativ);
 			ResultSet rs = pstmt.executeQuery();
 	 		if (rs.next()) {
-//	 		{	e = new Funcionario(rs.getInt("FUNC_COD"),
-//					              rs.getInt("ATIV_COD"), 
-//					              rs.getString("FUNCAO"));
+	 			
+	 			e = new Alocado(rs.getInt("FUNC_COD"), 					
+					              rs.getInt("ATIV_COD"), 
+					              rs.getString("FUNCAO"));
 	 		}
 	 		pstmt.close();
 		}	
@@ -141,7 +143,7 @@ public class RepositorioAlocado
 		}
 
 		return e;
-	}
-
-	
+		
 }
+}
+		

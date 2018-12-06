@@ -4,27 +4,43 @@ import java.util.Calendar;
 
 public class Atividade {
 	
-	private Long codAtividade;
-	private Calendar dataIni;
-	private Calendar dataFim;
+	private int codAtividade;
+	private int codEtapa;
+	private String dataIni;
+	private String dataFim;
 	
 	
-	public Long getCodAtividade() {
+	public Atividade(int codAtividade, int codEtapa, String dataIni, String dataFim) {
+		super();
+		this.codAtividade = codAtividade;
+		this.codEtapa = codEtapa;
+		this.dataIni = dataIni;
+		this.dataFim = dataFim;
+	}
+	
+	
+	public int getCodAtividade() {
 		return codAtividade;
 	}
-	public void setCodAtividade(Long codAtividade) {
+	public void setCodAtividade(int codAtividade) {
 		this.codAtividade = codAtividade;
 	}
-	public Calendar getDataIni() {
+	public int getCodEtapa() {
+		return codEtapa;
+	}
+	public void setCodEtapa(int codEtapa) {
+		this.codEtapa = codEtapa;
+	}
+	public String getDataIni() {
 		return dataIni;
 	}
-	public void setDataIni(Calendar dataIni) {
+	public void setDataIni(String dataIni) {
 		this.dataIni = dataIni;
 	}
-	public Calendar getDataFim() {
+	public String getDataFim() {
 		return dataFim;
 	}
-	public void setDataFim(Calendar dataFim) {
+	public void setDataFim(String dataFim) {
 		this.dataFim = dataFim;
 	}
 	
