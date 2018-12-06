@@ -7,7 +7,7 @@ import trabalho.poo.controller.Etapa;
 import java.sql.*;
 
 public class RepositorioEtapas
-{	public static int incluir (Connection conn, int cod, int cod_proj, String inicio, String fim) 
+{	public int incluir (Connection conn, Etapa etapa) 
 		throws SQLException
 	{	
 
@@ -15,10 +15,10 @@ public class RepositorioEtapas
 		{	PreparedStatement pstmt = conn.prepareStatement 
 				("INSERT INTO ETAPAS (COD, PROJ_COD, DATA_INICIO, DATA_FIM) " +
 	   			 "VALUES (?, ?, ?, ?)");
-			pstmt.setInt (1, cod);
-			pstmt.setInt	(2, cod_proj);	
-			pstmt.setString (3, inicio);
-			pstmt.setString (4, fim);
+			pstmt.setInt (1, etapa.getCod());
+			pstmt.setInt	(2, etapa.getProjCod());	
+			pstmt.setString (3, etapa.getDataIni());
+			pstmt.setString (4, etapa.getDataFim());
 
 			pstmt.executeUpdate();
 			pstmt.close();
@@ -46,20 +46,19 @@ public class RepositorioEtapas
 		return 0;
 	}
 
-	public static boolean alterar (Connection conn, int cod, int cod_proj, String inicio, String fim) 
+	public static boolean alterar (Connection conn, Etapa etapa) 
 		throws SQLException
 	{		
 		int n = 0;
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement 
-				("UPDATE ETAPAS SET DATA_INICIO = ?, DATA_FIM = ? WHERE COD = ? AND PROJ_COD = ?");
+				("UPDATE ETAPAS SET  DATA_FIM = ? WHERE PROJ_COD = ?");
 				
 				
-			pstmt.setString	(1, inicio);
-			pstmt.setString	(2, fim);			
-			pstmt.setInt	(3, cod);	
-			pstmt.setInt	(4, cod_proj);	
+			pstmt.setString	(1, etapa.getDataFim());
+			pstmt.setInt	(2, etapa.getProjCod());
+				
 				
 			n = pstmt.executeUpdate();
 			pstmt.close();
@@ -87,7 +86,7 @@ public class RepositorioEtapas
 	}
 
 
-	public static boolean excluir (Connection conn, int cod, int cod_proj) 
+	public boolean excluir (Connection conn, int cod_proj) 
 	// throws Excecao <== É muito comum o método exclui gerar alguma  
 	//                    exceção, no entanto, neste caso em particular 
 	//                    nenhuma exceção é gerada.
@@ -96,9 +95,9 @@ public class RepositorioEtapas
 				
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement 
-				("DELETE FROM ETAPAS WHERE COD = ? AND PROJ_COD = ?");
+				("DELETE FROM ETAPAS WHERE PROJ_COD = ?");
 			
-			pstmt.setInt (1, cod);
+			
 			pstmt.setInt (1, cod_proj);
 			n = pstmt.executeUpdate();
 			pstmt.close();

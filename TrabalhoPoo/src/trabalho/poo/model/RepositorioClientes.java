@@ -7,18 +7,18 @@ import trabalho.poo.controller.Clientes;
 import java.sql.*;
 
 public class RepositorioClientes
-{	public static int incluir (Connection conn, String cpf, String nome, String end, String tel, String email) 
+{	public int incluir (Connection conn, Clientes clientes) 
 		throws SQLException
 	{		
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement 
 				("INSERT INTO CLIENTES (CPF, NOME, ENDERECO, TELEFONE, EMAIL) " +
 	   			 "VALUES (?, ?, ?, ?)");
-			pstmt.setString (1, cpf);
-			pstmt.setString	(2, nome);	
-			pstmt.setString (3, end );
-			pstmt.setString	(4, tel);
-			pstmt.setString	(5, email);
+			pstmt.setString (1, clientes.getCPF());
+			pstmt.setString	(2, clientes.getNome());	
+			pstmt.setString (3, clientes.getEndereco());
+			pstmt.setString	(4, clientes.getTelefone());
+			pstmt.setString	(5, clientes.getEmail());
 
 			pstmt.executeUpdate();
 			pstmt.close();

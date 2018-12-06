@@ -8,19 +8,19 @@ import java.sql.*;
 import java.sql.Date;
 
 public class RepositorioProjeto
-{	public static int incluir (Connection conn, int cod, String cpf, String inicio, String fim, double valor) 
+{	public static int incluir (Connection conn, Projeto projeto) 
 		throws SQLException
 	{	
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement 
-				("INSERT INTO PROJETO (COD, CPF, DATA_INICIO, DATA_FIM, VALOR) " +
+				("INSERT INTO PROJETO (COD, CPF, DATA_INICIO, VALOR) " +
 	   			 "VALUES (?, ?, ?, ?)");
-			pstmt.setInt (1, cod);
-			pstmt.setString	(2, cpf);	
-			pstmt.setString (3, inicio);
-			pstmt.setString (4, fim);
-			pstmt.setDouble	(5, valor);	
+			pstmt.setInt    (1, projeto.getCod());
+			pstmt.setString	(2, projeto.getCpf());	
+			pstmt.setString (3, projeto.getDataIni());
+			pstmt.setDouble (4, projeto.getValor());
+			
 
 			pstmt.executeUpdate();
 			pstmt.close();
@@ -118,7 +118,7 @@ public class RepositorioProjeto
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement
-				("SELECT COD, CPF, DATA_INICIO, DATA_FIM, VALOR FROM PROJETO " +
+				("SELECT COD, CPF, DATA_INICIO, VALOR FROM PROJETO " +
 	 			 "WHERE COD = ?"); 
 
 			pstmt.setInt(1, cod);
@@ -127,7 +127,6 @@ public class RepositorioProjeto
 	 		{	e = new Projeto(rs.getInt("COD"),
 					              rs.getString("CPF"),
 								  rs.getString("DATA_INICIO"),
-					              rs.getString("DATA_FIM"), 
 						          rs.getDouble("VALOR"));
 	 		}
 	 		pstmt.close();

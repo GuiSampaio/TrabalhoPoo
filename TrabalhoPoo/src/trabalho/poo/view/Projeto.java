@@ -11,12 +11,18 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
+
+import trabalho.poo.model.ConnectionFactory;
+import trabalho.poo.model.RepositorioProjeto;
+
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Projeto extends JFrame {
@@ -135,23 +141,44 @@ public class Projeto extends JFrame {
 		lblValorDoProjeto.setBounds(248, 203, 98, 14);
 		contentPane.add(lblValorDoProjeto);
 		
+		JFormattedTextField formattedTextField = new JFormattedTextField(Mascara("##/##/####"));
+		formattedTextField.setBounds(356, 169, 86, 20);
+		contentPane.add(formattedTextField);
+		
 		textField_1 = new JTextField();
 		textField_1.setBounds(356, 200, 86, 20);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
+		JLabel lblCPF = new JLabel("CPF Cliente:");
+		lblCPF.setForeground(new Color(0,100,0));
+		lblCPF.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCPF.setBounds(248, 234, 98, 14);
+		contentPane.add(lblCPF);
+		
+		JFormattedTextField formattedTextFieldCPF = new JFormattedTextField(Mascara("###.###.###-##"));
+		formattedTextFieldCPF.setBounds(356, 231, 86, 20);
+		contentPane.add(formattedTextFieldCPF);
+		
 		JButton btnCadastrarProjeto = new JButton("Cadastrar projeto");
 		btnCadastrarProjeto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//cadastrarProjeto(formattedTextField, textField_1)
-			}
+				RepositorioProjeto repositorioProjeto = new RepositorioProjeto();
+				int cod = (int) Math.random();
+				trabalho.poo.controller.Projeto projeto = new  trabalho.poo.controller.Projeto(cod, formattedTextFieldCPF.getText(), formattedTextField.getText(), Double.parseDouble(textField_1.getText()));
+				try {
+					RepositorioProjeto.incluir(ConnectionFactory.getConnection(), projeto);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				}
 		});
 		btnCadastrarProjeto.setBounds(283, 278, 168, 23);
 		contentPane.add(btnCadastrarProjeto);
 		
-		JFormattedTextField formattedTextField = new JFormattedTextField(Mascara("##/##/####"));
-		formattedTextField.setBounds(356, 169, 86, 20);
-		contentPane.add(formattedTextField);
 	}
 
 }

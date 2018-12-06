@@ -9,12 +9,17 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
+
+import trabalho.poo.model.ConnectionFactory;
+import trabalho.poo.model.RepositorioEtapas;
+
 import javax.swing.JLabel;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Etapa extends JFrame {
@@ -130,34 +135,6 @@ public class Etapa extends JFrame {
 		lblFinal.setBounds(283, 118, 46, 14);
 		contentPane.add(lblFinal);
 		
-		JButton btnCadastrarEtapa = new JButton("Cadastrar etapa");
-		btnCadastrarEtapa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//cadastra_etapa(formattedTextField, formattedTextfield_1)
-				//trabalho.poo.controller.Etapa etapa = new trabalho.poo.controller.Etapa(Math.random(), Math.random(), formattedTextField., formattedTextfield_1);
-			}
-		});
-		btnCadastrarEtapa.setBounds(283, 169, 176, 23);
-		contentPane.add(btnCadastrarEtapa);
-		
-		JButton btnEditarEtapa = new JButton("Editar etapa");
-		btnEditarEtapa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//editar_etapa(formattedTextField, formattedTextfield_1, textField)
-			}
-		});
-		btnEditarEtapa.setBounds(232, 297, 151, 23);
-		contentPane.add(btnEditarEtapa);
-		
-		JButton btnExcluirEtapa = new JButton("Excluir etapa");
-		btnExcluirEtapa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//excluir_etapa(textField)
-			}
-		});
-		btnExcluirEtapa.setBounds(393, 297, 140, 23);
-		contentPane.add(btnExcluirEtapa);
-		
 		JFormattedTextField formattedTextField = new JFormattedTextField(Mascara("##/##/####"));
 		formattedTextField.setBounds(330, 73, 98, 20);
 		contentPane.add(formattedTextField);
@@ -174,5 +151,51 @@ public class Etapa extends JFrame {
 		textField.setBounds(340, 248, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
+		
+		JButton btnCadastrarEtapa = new JButton("Cadastrar etapa");
+		btnCadastrarEtapa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RepositorioEtapas repoEtapas = new RepositorioEtapas();
+			
+				int cod = (int) Math.random();				
+				trabalho.poo.controller.Etapa etapa = new trabalho.poo.controller.Etapa(cod, Integer.parseInt(textField.getText()), formattedTextField.getText(), formattedTextField_1.getText());
+				try {
+					repoEtapas.incluir(ConnectionFactory.getConnection(), etapa);
+				} catch (SQLException e1) {
+				
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnCadastrarEtapa.setBounds(283, 169, 176, 23);
+		contentPane.add(btnCadastrarEtapa);
+		
+		JButton btnEditarEtapa = new JButton("Editar etapa");
+		btnEditarEtapa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//editar_etapa(formattedTextField, formattedTextfield_1, textField)
+				RepositorioEtapas repoEtapas = new RepositorioEtapas();
+				trabalho.poo.controller.Etapa  etapa = new trabalho.poo.controller.Etapa(10, Integer.parseInt(textField.getText()), formattedTextField.getText(), formattedTextField_1.getText()); 
+				
+			}
+		});
+		btnEditarEtapa.setBounds(232, 297, 151, 23);
+		contentPane.add(btnEditarEtapa);
+		
+		JButton btnExcluirEtapa = new JButton("Excluir etapa");
+		btnExcluirEtapa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//excluir_etapa(textField)
+				RepositorioEtapas repoEtapas = new RepositorioEtapas();
+				try {
+					repoEtapas.excluir(ConnectionFactory.getConnection(), Integer.parseInt(textField.getText()));
+				} catch (NumberFormatException | SQLException e1) {
+					
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnExcluirEtapa.setBounds(393, 297, 140, 23);
+		contentPane.add(btnExcluirEtapa);
 	}
 }

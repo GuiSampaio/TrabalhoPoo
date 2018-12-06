@@ -115,8 +115,8 @@ public class RepositorioFuncionarios
 		return n == 1;
 	}
 
-	public static Clientes recuperaUmCliente(Connection conn, String cpf)
-	{	Clientes e = null;
+	public static Funcionario recuperaUmFuncionario(Connection conn, String cpf)
+	{	Funcionario e = null;
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement
@@ -126,7 +126,9 @@ public class RepositorioFuncionarios
 			pstmt.setString(1, cpf);
 			ResultSet rs = pstmt.executeQuery();
 	 		if (rs.next())
-	 		{	e = new Clientes(rs.getString("CPF"),
+	 		{	e = new Funcionario(
+	 								
+	 							  rs.getString("FUNC"),
 					              rs.getString("NOME"), 
 					              rs.getString("ENDERECO"), 
 						          rs.getString("TELEFONE"));

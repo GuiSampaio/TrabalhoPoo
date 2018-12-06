@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
+import trabalho.poo.controller.Clientes;
+import trabalho.poo.model.ConnectionFactory;
 import trabalho.poo.model.RepositorioClientes;
 
 import javax.swing.JMenuBar;
@@ -21,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class MenuOperacional extends JFrame {
@@ -187,7 +190,15 @@ public class MenuOperacional extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//cadastrar(textField, textField_1, textField_2, formattedTextFieldCPF, formattedTextFieldTel)
-				RepositorioClientes repoClientes = new RepositorioClientes();			}
+					RepositorioClientes repoClientes = new RepositorioClientes();
+					Clientes clientes = new Clientes(formattedTextFieldCPF.getText(), textField.getText(), textField_1.getText(), formattedTextFieldTel.getText(), textField_2.getText());
+				  try {
+					repoClientes.incluir(ConnectionFactory.getConnection(), clientes);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				}
 		});
 		btnCadastrar.setBounds(357, 423, 89, 23);
 		contentPane.add(btnCadastrar);

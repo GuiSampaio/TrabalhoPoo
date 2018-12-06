@@ -9,12 +9,11 @@ public class Projeto {
 	   private Double valor;
 	   
 	   
-	    public Projeto(int cod, String cpf, String dataIni, String dataFim, Double valor){
+	    public Projeto(int cod, String cpf, String dataIni, Double valor){
 	        this.cod = cod;
 	        this.cpf = cpf;
 	        this.dataIni = dataIni;
-	        this.dataFim = dataFim;
-	        this.valor = (Double.parseDouble(dataFim) - Double.parseDouble(dataIni))* 150;
+		    this.valor = (Double.parseDouble(dataFim) - Double.parseDouble(dataIni))* 150;
 	    }
 
 		public int getCod() {
