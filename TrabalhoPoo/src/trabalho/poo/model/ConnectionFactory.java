@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 	
-	private static String DRIVER = "TrabalhoPoo/TrabalhoPoo/libs/portgres";
+	private static String DRIVER = "/TrabalhoPoo/libs/postgresql-42.2.5";
 	private static String URL 	 = "bancopoo.postgresql.dbaas.com.br";
 	private static String USER	 = "bancopoo";
 	private static String PASSWD = "unilasalle1";

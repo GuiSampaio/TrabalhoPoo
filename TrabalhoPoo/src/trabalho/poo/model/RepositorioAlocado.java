@@ -128,10 +128,10 @@ public class RepositorioAlocado
 			pstmt.setInt(1, cod_func);
 			pstmt.setInt(2, cod_ativ);
 			ResultSet rs = pstmt.executeQuery();
-	 		if (rs.next())
-	 		{	e = new Funcionario(rs.getInt("FUNC_COD"),
-					              rs.getInt("ATIV_COD"), 
-					              rs.getString("FUNCAO"));
+	 		if (rs.next()) {
+//	 		{	e = new Funcionario(rs.getInt("FUNC_COD"),
+//					              rs.getInt("ATIV_COD"), 
+//					              rs.getString("FUNCAO"));
 	 		}
 	 		pstmt.close();
 		}	
