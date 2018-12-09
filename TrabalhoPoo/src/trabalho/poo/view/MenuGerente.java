@@ -62,13 +62,14 @@ public class MenuGerente extends JFrame {
 		JButton btnEmitirRelatrio = new JButton("Emitir Relat\u00F3rio");
 		btnEmitirRelatrio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C:\\relatórios"), StandardCharsets.UTF_8))) {
-				    writer.write("qualquer coisa");
-				} 
-				catch (IOException ex) {
-				    // Handle me
-				}  
-			}
+				public void actionPerformed(ActionEvent e) {
+					try {
+						RepositorioProjeto.recuperaProjeto(ConnectionFactory.getConnection());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}  
+				}
 		});
 		btnEmitirRelatrio.setBounds(668, 510, 106, 40);
 		contentPane.add(btnEmitirRelatrio);

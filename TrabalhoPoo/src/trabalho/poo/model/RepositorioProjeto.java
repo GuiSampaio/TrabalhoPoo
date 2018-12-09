@@ -113,15 +113,13 @@ public class RepositorioProjeto
 		return n == 1;
 	}
 
-	public static Projeto recuperaUmProjeto(Connection conn, int cod)
+	public static Projeto recuperaProjeto(Connection conn)
 	{	Projeto e = null;
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement
-				("SELECT COD, CPF, DATA_INICIO, VALOR FROM PROJETO " +
-	 			 "WHERE COD = ?"); 
+				("SELECT COD, CPF, DATA_INICIO, VALOR FROM PROJETO "); 
 
-			pstmt.setInt(1, cod);
 			ResultSet rs = pstmt.executeQuery();
 	 		if (rs.next())
 	 		{	e = new Projeto(rs.getInt("COD"),
