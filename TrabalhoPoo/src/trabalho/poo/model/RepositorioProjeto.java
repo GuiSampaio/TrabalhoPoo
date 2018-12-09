@@ -118,7 +118,7 @@ public class RepositorioProjeto
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement
-				("SELECT COD, CPF, DATA_INICIO, VALOR FROM PROJETO "); 
+				("SELECT COD, CPF, DATA_INICIO, VALOR FROM PROJETO ");
 
 			ResultSet rs = pstmt.executeQuery();
 	 		if (rs.next())
