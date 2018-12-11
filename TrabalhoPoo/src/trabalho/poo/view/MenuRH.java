@@ -100,7 +100,7 @@ public class MenuRH extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		formattedTextField = new JFormattedTextField(Mascara("(##) # ####-####"));
+		formattedTextField = new JFormattedTextField(Mascara("(##)#####-####"));
 		formattedTextField.setBounds(328, 195, 89, 20);
 		contentPane.add(formattedTextField);
 		
@@ -118,7 +118,7 @@ public class MenuRH extends JFrame {
 		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Funcionario umFuncionario = new Funcionario(textField_2.getText(), textField_1.getText(), formattedTextField.getText(), textField.getText());
+				Funcionario umFuncionario = new Funcionario(textField_2.getText(), textField_1.getText(), formattedTextField.getText().replace("(", "").replace(")", "").replace("-", "").trim(), textField.getText());
 				RepositorioFuncionarios funcionarios = new RepositorioFuncionarios();
 				try {
 					funcionarios.incluir(ConnectionFactory.getConnection(), umFuncionario);

@@ -8,17 +8,22 @@ import trabalho.poo.controller.Funcionario;
 import java.sql.*;
 
 public class RepositorioFuncionarios
-{	public static int incluir (Connection conn, Funcionario funcionario) 
+{	public int incluir (Connection conn, Funcionario funcionario) 
 		throws SQLException
 	{		
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement 
-				("INSERT INTO FUNCIONARIOS (FUNC, NOME, ENDERECO, TELEFONE) " +
-	   			 "VALUES (?, ?, ?, ?)");
-			pstmt.setString (1, funcionario.getFunc());
-			pstmt.setString	(2, funcionario.getNome());	
-			pstmt.setString (3, funcionario.getEndereco());
-			pstmt.setString	(4, funcionario.getTelefone());
+				("INSERT INTO FUNCIONARIOS (COD, FUNC, NOME, ENDERECO, TELEFONE) " +
+	   			 "VALUES (?, ?, ?, ?, ?)");
+		Random r = new Random();
+		int cod = r.nextInt(50000);
+			cod+=10;
+			
+			pstmt.setInt	(1, cod);
+			pstmt.setString (2, funcionario.getFunc());
+			pstmt.setString	(3, funcionario.getNome());	
+			pstmt.setString (4, funcionario.getEndereco());
+			pstmt.setString	(5, funcionario.getTelefone());
 
 			pstmt.executeUpdate();
 			pstmt.close();
