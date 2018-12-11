@@ -1,6 +1,9 @@
 package trabalho.poo.view;
 
 import trabalho.poo.controller.*;
+import trabalho.poo.model.ConnectionFactory;
+import trabalho.poo.model.RepositorioProjeto;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -18,6 +21,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class MenuGerente extends JFrame {
@@ -62,7 +66,7 @@ public class MenuGerente extends JFrame {
 		JButton btnEmitirRelatrio = new JButton("Emitir Relat\u00F3rio");
 		btnEmitirRelatrio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				public void actionPerformed(ActionEvent e) {
+				public void actionPerformed1(ActionEvent e) {
 					try {
 						RepositorioProjeto.recuperaProjeto(ConnectionFactory.getConnection());
 					} catch (SQLException e1) {
@@ -70,7 +74,7 @@ public class MenuGerente extends JFrame {
 						e1.printStackTrace();
 					}  
 				}
-		});
+		}});
 		btnEmitirRelatrio.setBounds(668, 510, 106, 40);
 		contentPane.add(btnEmitirRelatrio);
 		
