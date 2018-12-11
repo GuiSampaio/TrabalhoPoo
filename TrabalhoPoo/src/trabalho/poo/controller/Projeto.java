@@ -13,7 +13,7 @@ public class Projeto {
 	        this.cod = cod;
 	        this.cpf = cpf;
 	        this.dataIni = dataIni;
-		    this.valor = (Double.parseDouble(dataFim) - Double.parseDouble(dataIni))* 150;
+		    this.valor = valor;
 	    }
 
 		public int getCod() {

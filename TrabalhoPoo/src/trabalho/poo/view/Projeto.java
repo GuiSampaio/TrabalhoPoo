@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
@@ -169,6 +170,7 @@ public class Projeto extends JFrame {
 				trabalho.poo.controller.Projeto projeto = new  trabalho.poo.controller.Projeto(cod, formattedTextFieldCPF.getText(), formattedTextField.getText(), Double.parseDouble(textField_1.getText()));
 				try {
 					RepositorioProjeto.incluir(ConnectionFactory.getConnection(), projeto);
+					JOptionPane.showMessageDialog(null, "Operação concluida");
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
@@ -122,7 +123,10 @@ public class MenuRH extends JFrame {
 				RepositorioFuncionarios funcionarios = new RepositorioFuncionarios();
 				try {
 					funcionarios.incluir(ConnectionFactory.getConnection(), umFuncionario);
+					JOptionPane.showMessageDialog(null, textField_1.getText() + " Cadastrado com Sucesso");
+
 				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "Erro ao cadastrar " + textField_1.getText());
 					e1.printStackTrace();
 				}
 			}

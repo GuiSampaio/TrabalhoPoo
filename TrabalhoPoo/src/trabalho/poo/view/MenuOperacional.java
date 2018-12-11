@@ -16,6 +16,7 @@ import trabalho.poo.model.RepositorioClientes;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.AbstractAction;
@@ -194,6 +195,7 @@ public class MenuOperacional extends JFrame {
 					Clientes clientes = new Clientes(formattedTextFieldCPF.getText(), textField.getText(), textField_1.getText(), formattedTextFieldTel.getText(), textField_2.getText());
 				  try {
 					repoClientes.incluir(ConnectionFactory.getConnection(), clientes);
+					JOptionPane.showMessageDialog(null, "Operação concluida");
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

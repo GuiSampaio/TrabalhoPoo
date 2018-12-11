@@ -66,15 +66,25 @@ public class MenuGerente extends JFrame {
 		JButton btnEmitirRelatrio = new JButton("Emitir Relat\u00F3rio");
 		btnEmitirRelatrio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				public void actionPerformed1(ActionEvent e) {
+				
 					try {
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+							try {
+								showData frame = new showData(ConnectionFactory.getConnection());
+								frame.setVisible(true);
+							} catch (Exception e) {
+							e.printStackTrace();
+							}
+						}
+						});
 						RepositorioProjeto.recuperaProjeto(ConnectionFactory.getConnection());
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}  
 				}
-		}});
+		});
 		btnEmitirRelatrio.setBounds(668, 510, 106, 40);
 		contentPane.add(btnEmitirRelatrio);
 		
@@ -90,7 +100,7 @@ public class MenuGerente extends JFrame {
 		lblCodE.setBounds(269, 239, 111, 14);
 		contentPane.add(lblCodE);
 		
-		JLabel lblCodP = new JLabel("Condigo do projeto:");
+		JLabel lblCodP = new JLabel("Codigo do projeto:");
 		lblCodP.setForeground(new Color(0,100,0));
 		lblCodP.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblCodP.setBounds(252, 277, 133, 14);

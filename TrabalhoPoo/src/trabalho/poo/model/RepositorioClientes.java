@@ -13,7 +13,7 @@ public class RepositorioClientes
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement 
 				("INSERT INTO CLIENTES (CPF, NOME, ENDERECO, TELEFONE, EMAIL) " +
-	   			 "VALUES (?, ?, ?, ?)");
+	   			 "VALUES (?, ?, ?, ?, ?)");
 			pstmt.setString (1, clientes.getCPF());
 			pstmt.setString	(2, clientes.getNome());	
 			pstmt.setString (3, clientes.getEndereco());

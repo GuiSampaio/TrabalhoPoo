@@ -14,9 +14,13 @@ public class RepositorioProjeto
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement 
-				("INSERT INTO PROJETO (COD, CPF, DATA_INICIO, VALOR) " +
+				("INSERT INTO PROJETO (COD, CLIENTE_CPF, DATA_INICIO, VALOR) " +
 	   			 "VALUES (?, ?, ?, ?)");
-			pstmt.setInt    (1, projeto.getCod());
+		Random r = new Random();
+		int cod = r.nextInt(50000);
+			cod+=10;
+		
+			pstmt.setInt    (1, cod);
 			pstmt.setString	(2, projeto.getCpf());	
 			pstmt.setString (3, projeto.getDataIni());
 			pstmt.setDouble (4, projeto.getValor());
@@ -48,18 +52,17 @@ public class RepositorioProjeto
 		return 0;
 	}
 
-	public static boolean alterar (Connection conn, int cod, String cpf, String inicio, String fim, double valor) 
+	public static boolean alterar (Connection conn, int cod, String cpf, String inicio, double valor) 
 		throws SQLException
 	{		
 		int n = 0;
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement 
-				("UPDATE PROJETO SET CPF = ?, DATA_INICIO = ?, DATA_FIM = ?, VALOR = ? WHERE COD = ?");
+				("UPDATE PROJETO SET CPF = ?, DATA_INICIO = ?, VALOR = ? WHERE COD = ?");
 				
 			pstmt.setString	(1, cpf);	
-			pstmt.setString	(2, inicio);
-			pstmt.setString	(2, fim);			
+			pstmt.setString	(2, inicio);			
 			pstmt.setDouble	(3, valor);	
 			pstmt.setInt	(4, cod);	
 				
@@ -118,12 +121,12 @@ public class RepositorioProjeto
 
 		try
 		{	PreparedStatement pstmt = conn.prepareStatement
-				("SELECT COD, CPF, DATA_INICIO, VALOR FROM PROJETO ");
+				("SELECT COD, CLIENTE_CPF, DATA_INICIO, VALOR FROM PROJETO ");
 
 			ResultSet rs = pstmt.executeQuery();
 	 		if (rs.next())
 	 		{	e = new Projeto(rs.getInt("COD"),
-					              rs.getString("CPF"),
+					              rs.getString("CLIENTE_CPF"),
 								  rs.getString("DATA_INICIO"),
 						          rs.getDouble("VALOR"));
 	 		}

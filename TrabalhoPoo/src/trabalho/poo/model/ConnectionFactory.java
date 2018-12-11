@@ -10,7 +10,7 @@ public class ConnectionFactory {
 	private static String DRIVER = "postgresql-42.2.5";
 	private static String URL 	 = "jdbc:postgresql://localhost:5432/POO";
 	private static String USER	 = "postgres";
-	private static String PASSWD = "teste";
+	private static String PASSWD = "postgres";
 	
 	public static Connection getConnection() throws SQLException{
 		
